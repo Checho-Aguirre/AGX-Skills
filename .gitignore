@@ -1,0 +1,18 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Entorno y secretos
+.env
+.env.*
+
+# Dependencias y temporales
+node_modules/
+*.log
+*.zip

@@ -1,0 +1,17 @@
+{
+  "name": "agx-skills",
+  "description": "Skills de revisión web de AGX Tech And Code para Claude Code",
+  "owner": {
+    "name": "Sergio Granados Aguirre (AGX Tech And Code)",
+    "url": "https://github.com/Checho-Aguirre"
+  },
+  "plugins": [
+    {
+      "name": "agx-skills",
+      "source": "./",
+      "description": "Audita una web hecha con IA (20 señales) y revísala en 5 pasos antes de lanzarla.",
+      "category": "productivity",
+      "tags": ["web", "seo", "auditoria", "lanzamiento", "spanish"]
+    }
+  ]
+}
