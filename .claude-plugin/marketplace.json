@@ -1,6 +1,6 @@
 {
   "name": "agx-skills",
-  "description": "Skills de revisión web de AGX Tech And Code para Claude Code: Auditoría Web y Revisión Pre lanzamiento",
+  "description": "Skills de revisión web de AGX Tech And Code para Claude Code: Auditoría Web, Revisión Pre lanzamiento y AGX Security Check",
   "owner": {
     "name": "Sergio Granados Aguirre (AGX Tech And Code)",
     "url": "https://github.com/Checho-Aguirre"
@@ -9,7 +9,7 @@
     {
       "name": "agx-skills",
       "source": "./",
-      "description": "Auditoría Web (20 señales de un sitio hecho con IA sin revisión) y Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos).",
+      "description": "Auditoría Web (20 señales de un sitio hecho con IA sin revisión), Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos) y AGX Security Check (auditoría de seguridad del código con 20 fallas comunes).",
       "category": "productivity",
       "tags": ["web", "seo", "auditoria", "lanzamiento", "spanish"]
     }

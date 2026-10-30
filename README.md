@@ -1,29 +1,35 @@
 # AGX Skills · revisión web para Claude Code
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
-[![Versión](https://img.shields.io/badge/versión-2.1.0-green.svg)](#cambios)
+[![Versión](https://img.shields.io/badge/versión-2.2.0-green.svg)](#cambios)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skills-d97757.svg)](https://code.claude.com/docs/en/skills)
 
-Dos skills que revisan tu web o app hecha con IA antes de publicarla, para que
+Tres skills que revisan tu web o app hecha con IA antes de publicarla, para que
 no se note improvisada y no salga con fallos graves.
 
 | Skill | Comando | Qué revisa |
 |---|---|---|
 | [**Auditoría Web**](skills/auditoria-web/SKILL.md) | `/auditoria-web` | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
 | [**Revisión Pre lanzamiento**](skills/revision-pre-lanzamiento/SKILL.md) | `/revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento (con escalabilidad y caché) y seguridad (con sesiones, límites de peticiones, topes de gasto y monitoreo). Cierra con el despliegue: vuelta atrás, copias de seguridad probadas y apps móviles |
+| [**AGX Security Check**](skills/agx-security-check/SKILL.md) | `/agx-security-check` | Auditoría de seguridad del código completo: 20 fallas comunes (secretos, permisos, IDs adivinables, inyección, XSS, mass assignment, webhooks, subidas), escáneres gratuitos, arreglos de uno en uno y blindaje con `CLAUDE.md`, un hook anti-secretos y revisión automática de cada PR |
 
 Se complementan: la primera cuida lo que ven buscadores, redes y visitantes; la
-segunda, que la app funcione, proteja los datos y cumpla la ley. Las dos
-**primero auditan y reportan**; solo corrigen lo que tú apruebes.
+segunda, que la app funcione, proteja los datos y cumpla la ley; la tercera baja
+al código para encontrar las fallas de seguridad que una app hecha con IA suele
+tener. Las tres **primero auditan y reportan**; solo corrigen lo que tú apruebes.
 
-> **English summary:** Two Claude Code skills (in Spanish) to review a website
+> **English summary:** Three Claude Code skills (in Spanish) to review a website
 > or app built with AI before launch. **Auditoría Web** (`/auditoria-web`)
 > checks 20 signs of an unreviewed AI-built site (technical SEO, metadata, 404,
 > favicon, console errors, page weight). **Revisión Pre lanzamiento**
 > (`/revision-pre-lanzamiento`) runs a 5-step pre-launch review: end-to-end
 > tests, agent-driven testing, privacy, performance and security (sessions,
 > rate limits, spending caps, monitoring), then checks deployment (rollback,
-> tested backups, mobile apps), and never marks as OK what it couldn't verify. Install with
+> tested backups, mobile apps), and never marks as OK what it couldn't verify.
+> **AGX Security Check** (`/agx-security-check`) audits the whole codebase for
+> 20 common security flaws (secrets, authorization, IDOR, injection, XSS,
+> webhooks, uploads), runs free scanners, fixes findings one by one and adds
+> guardrails so they don't come back. Install with
 > `npx skills add Checho-Aguirre/agx-skills`, as a Claude Code plugin, or by
 > copying the folders into `~/.claude/skills/`. MIT licensed.
 
@@ -67,11 +73,12 @@ claude plugin install agx-skills@agx-skills
 ```
 
 Instaladas como plugin, las skills llevan el prefijo del plugin:
-`/agx-skills:auditoria-web` y `/agx-skills:revision-pre-lanzamiento`.
+`/agx-skills:auditoria-web`, `/agx-skills:revision-pre-lanzamiento` y
+`/agx-skills:agx-security-check`.
 
 ### 3. Manual
 
-Descarga el repositorio y copia las dos carpetas de `skills/` en tu carpeta de
+Descarga el repositorio y copia las tres carpetas de `skills/` en tu carpeta de
 skills personales:
 
 - **macOS / Linux:** `~/.claude/skills/`
@@ -82,6 +89,7 @@ Debe quedar así, sin carpetas de más en medio:
 ```
 .claude/skills/auditoria-web/SKILL.md
 .claude/skills/revision-pre-lanzamiento/SKILL.md
+.claude/skills/agx-security-check/SKILL.md
 ```
 
 En macOS o Linux puedes hacerlo de una vez:
@@ -107,8 +115,12 @@ En cualquier sesión de Claude Code, dentro de tu proyecto:
 /revision-pre-lanzamiento
 ```
 
+```
+/agx-security-check
+```
+
 Claude también las activa solo cuando pides algo como *"revisa la web antes de
-publicarla"*. Si tu proyecto tiene `CLAUDE.md` o `DESIGN.md`, sus reglas mandan
+publicarla"* o *"audita la seguridad de este proyecto"*. Si tu proyecto tiene `CLAUDE.md` o `DESIGN.md`, sus reglas mandan
 sobre las de la skill.
 
 ### Qué entregan
@@ -135,7 +147,28 @@ comprobar queda como **No verificado**, nunca como OK:
 | 5. Seguridad | Falla: sin tope de gasto en la API de IA ni alerta de gasto inusual | Configurar el límite de facturación y la alerta |
 | Despliegue | No verificado: la copia de seguridad nunca se restauró | Restaurarla en staging y anotar cuánto tarda |
 
+Y AGX Security Check ordena las fallas por gravedad, sin mostrar nunca los
+secretos que encuentra:
+
+| # | Falla | Estado | Gravedad | Archivo:línea | Cómo se explotaría | Arreglo |
+|---|---|---|---|---|---|---|
+| 8 | IDs adivinables | Falla | Crítico | `api/pedidos/[id].ts:12` | Cambiando el id en la URL se ven pedidos ajenos | Filtrar por el usuario de la sesión |
+| 2 | Clave en el cliente | Falla | Alto | `src/lib/pagos.ts:4` (`sk_live_…a1b2`) | Cualquiera la lee en el bundle y cobra a tu cuenta | Moverla al servidor y rotarla |
+| 19 | Webhooks sin firma | No aplica | — | — | — | No hay webhooks |
+| 5 | Dependencias | No verificado | — | — | — | Falta osv-scanner; instalarlo y repetir |
+
 ## Cambios
+
+### 2.2.0
+
+Nueva skill **AGX Security Check** (`/agx-security-check`): auditoría de
+seguridad del código completo con 20 fallas comunes, escáneres gratuitos,
+arreglos de uno en uno y blindaje. Incluye un hook anti-secretos
+(`hooks/block-secrets.sh`) para copiar a tus proyectos.
+
+Para tenerla: con el CLI `skills`, vuelve a correr
+`npx skills add Checho-Aguirre/agx-skills`; como plugin,
+`/plugin marketplace update agx-skills`.
 
 ### 2.1.0
 
@@ -192,11 +225,13 @@ tratamiento de datos que exige la ley colombiana.
 
 ## Créditos
 
-Basadas en ideas de dos guías públicas, reescritas y adaptadas:
+Basadas en ideas de guías y kits públicos, reescritos y adaptados:
 
 - *"20 señales de que tu sitio está vibecodeado"*, de Ben Ramos.
 - *"Revisa tu app antes de lanzarla"*, de Ricardo Cabascango (AUPRIA).
 - *"De demo a vendible: las 10 capas"*, de tododeia.
+- [*vibe-check-security*](https://github.com/jdj40211/vibe-check-security), de
+  Juan David Sierra (MIT).
 
 ## Autor
 

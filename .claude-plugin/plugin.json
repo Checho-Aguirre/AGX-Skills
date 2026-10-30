@@ -1,8 +1,8 @@
 {
   "name": "agx-skills",
   "displayName": "AGX Skills",
-  "version": "2.1.0",
-  "description": "Auditoría Web (20 señales de un sitio hecho con IA sin revisión) y Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos).",
+  "version": "2.2.0",
+  "description": "Auditoría Web (20 señales de un sitio hecho con IA sin revisión), Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos) y AGX Security Check (auditoría de seguridad del código con 20 fallas comunes).",
   "author": {
     "name": "Sergio Granados Aguirre (AGX Tech And Code)",
     "url": "https://github.com/Checho-Aguirre"
