@@ -1,7 +1,7 @@
 {
   "name": "agx-skills",
   "displayName": "AGX Skills",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Auditoría Web (20 señales de un sitio hecho con IA sin revisión) y Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos).",
   "author": {
     "name": "Sergio Granados Aguirre (AGX Tech And Code)",

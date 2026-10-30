@@ -1,7 +1,7 @@
 # AGX Skills · revisión web para Claude Code
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
-[![Versión](https://img.shields.io/badge/versión-2.0.0-green.svg)](#cambios)
+[![Versión](https://img.shields.io/badge/versión-2.1.0-green.svg)](#cambios)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skills-d97757.svg)](https://code.claude.com/docs/en/skills)
 
 Dos skills que revisan tu web o app hecha con IA antes de publicarla, para que
@@ -10,7 +10,7 @@ no se note improvisada y no salga con fallos graves.
 | Skill | Comando | Qué revisa |
 |---|---|---|
 | [**Auditoría Web**](skills/auditoria-web/SKILL.md) | `/auditoria-web` | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
-| [**Revisión Pre lanzamiento**](skills/revision-pre-lanzamiento/SKILL.md) | `/revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento y seguridad |
+| [**Revisión Pre lanzamiento**](skills/revision-pre-lanzamiento/SKILL.md) | `/revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento (con escalabilidad y caché) y seguridad (con sesiones, límites de peticiones, topes de gasto y monitoreo). Cierra con el despliegue: vuelta atrás, copias de seguridad probadas y apps móviles |
 
 Se complementan: la primera cuida lo que ven buscadores, redes y visitantes; la
 segunda, que la app funcione, proteja los datos y cumpla la ley. Las dos
@@ -21,8 +21,9 @@ segunda, que la app funcione, proteja los datos y cumpla la ley. Las dos
 > checks 20 signs of an unreviewed AI-built site (technical SEO, metadata, 404,
 > favicon, console errors, page weight). **Revisión Pre lanzamiento**
 > (`/revision-pre-lanzamiento`) runs a 5-step pre-launch review: end-to-end
-> tests, agent-driven testing, privacy, performance and security, and never
-> marks as OK what it couldn't verify. Install with
+> tests, agent-driven testing, privacy, performance and security (sessions,
+> rate limits, spending caps, monitoring), then checks deployment (rollback,
+> tested backups, mobile apps), and never marks as OK what it couldn't verify. Install with
 > `npx skills add Checho-Aguirre/agx-skills`, as a Claude Code plugin, or by
 > copying the folders into `~/.claude/skills/`. MIT licensed.
 
@@ -131,8 +132,27 @@ comprobar queda como **No verificado**, nunca como OK:
 | 3. Privacidad | Falla: falta la autorización de tratamiento de datos en el registro | Casilla sin marcar con enlace a la política y prueba guardada |
 | 4. Rendimiento | No verificado: no hay entorno de staging para la prueba de carga | Crear staging y repetir |
 | 5. Seguridad | Falla crítica: la cuenta A ve datos de B | Activar RLS en `pedidos`. **No se lanza** hasta corregirlo |
+| 5. Seguridad | Falla: sin tope de gasto en la API de IA ni alerta de gasto inusual | Configurar el límite de facturación y la alerta |
+| Despliegue | No verificado: la copia de seguridad nunca se restauró | Restaurarla en staging y anotar cuánto tarda |
 
 ## Cambios
+
+### 2.1.0
+
+La Revisión Pre lanzamiento suma, sin cambiar sus 5 revisiones:
+
+- **Rendimiento:** escalabilidad (tareas en segundo plano, qué se rompe primero
+  con mucha carga) y caché (qué cachear, cómo invalidarla, nunca datos
+  personales en cachés compartidas).
+- **Seguridad:** build de producción sin source maps ni claves secretas en el
+  cliente, sesiones y cookies seguras, límites de peticiones por ruta, topes de
+  gasto y monitoreo con alertas.
+- **Cierre:** despliegue (entornos separados, HTTPS, versión etiquetada, plan
+  de vuelta atrás), copias de seguridad con restauración probada, apps móviles
+  y una comprobación rápida en producción después de publicar.
+
+Si la instalaste con el CLI `skills`, actualízala con `npx skills update`; como
+plugin, con `/plugin marketplace update agx-skills`.
 
 ### 2.0.0
 
@@ -176,6 +196,7 @@ Basadas en ideas de dos guías públicas, reescritas y adaptadas:
 
 - *"20 señales de que tu sitio está vibecodeado"*, de Ben Ramos.
 - *"Revisa tu app antes de lanzarla"*, de Ricardo Cabascango (AUPRIA).
+- *"De demo a vendible: las 10 capas"*, de tododeia.
 
 ## Autor
 
