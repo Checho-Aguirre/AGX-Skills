@@ -1,7 +1,8 @@
 {
   "name": "agx-skills",
-  "version": "1.0.0",
-  "description": "Audita una web hecha con IA (20 señales) y revísala en 5 pasos antes de lanzarla.",
+  "displayName": "AGX Skills",
+  "version": "2.0.0",
+  "description": "Auditoría Web (20 señales de un sitio hecho con IA sin revisión) y Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos).",
   "author": {
     "name": "Sergio Granados Aguirre (AGX Tech And Code)",
     "url": "https://github.com/Checho-Aguirre"
@@ -9,5 +10,5 @@
   "homepage": "https://github.com/Checho-Aguirre/agx-skills",
   "repository": "https://github.com/Checho-Aguirre/agx-skills",
   "license": "MIT",
-  "keywords": ["web", "seo", "auditoria", "lanzamiento", "vibecoding", "spanish"]
+  "keywords": ["web", "seo", "auditoria", "lanzamiento", "privacidad", "seguridad", "spanish"]
 }

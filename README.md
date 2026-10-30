@@ -1,26 +1,30 @@
 # AGX Skills · revisión web para Claude Code
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
+[![Versión](https://img.shields.io/badge/versión-2.0.0-green.svg)](#cambios)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skills-d97757.svg)](https://code.claude.com/docs/en/skills)
 
 Dos skills que revisan tu web o app hecha con IA antes de publicarla, para que
 no se note improvisada y no salga con fallos graves.
 
-| Skill | Qué revisa |
-|---|---|
-| [`auditoria-sitio-vibecodeado`](skills/auditoria-sitio-vibecodeado/SKILL.md) | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
-| [`revision-antes-de-lanzar`](skills/revision-antes-de-lanzar/SKILL.md) | 5 revisiones antes de lanzar: pruebas de principio a fin, prueba con agente, privacidad, rendimiento y seguridad |
+| Skill | Comando | Qué revisa |
+|---|---|---|
+| [**Auditoría Web**](skills/auditoria-web/SKILL.md) | `/auditoria-web` | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
+| [**Revisión Pre lanzamiento**](skills/revision-pre-lanzamiento/SKILL.md) | `/revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento y seguridad |
 
-Las dos **primero auditan y reportan**; solo corrigen lo que tú apruebes.
+Se complementan: la primera cuida lo que ven buscadores, redes y visitantes; la
+segunda, que la app funcione, proteja los datos y cumpla la ley. Las dos
+**primero auditan y reportan**; solo corrigen lo que tú apruebes.
 
 > **English summary:** Two Claude Code skills (in Spanish) to review a website
-> or app built with AI before launch. `auditoria-sitio-vibecodeado` checks 20
-> signs of an unreviewed AI-built site (technical SEO, metadata, 404, favicon,
-> console errors, page weight). `revision-antes-de-lanzar` runs a 5-step
-> pre-launch review: end-to-end tests, agent-driven testing, privacy,
-> performance and security. Install with `npx skills add Checho-Aguirre/agx-skills`,
-> as a Claude Code plugin, or by copying the folders into `~/.claude/skills/`.
-> MIT licensed.
+> or app built with AI before launch. **Auditoría Web** (`/auditoria-web`)
+> checks 20 signs of an unreviewed AI-built site (technical SEO, metadata, 404,
+> favicon, console errors, page weight). **Revisión Pre lanzamiento**
+> (`/revision-pre-lanzamiento`) runs a 5-step pre-launch review: end-to-end
+> tests, agent-driven testing, privacy, performance and security, and never
+> marks as OK what it couldn't verify. Install with
+> `npx skills add Checho-Aguirre/agx-skills`, as a Claude Code plugin, or by
+> copying the folders into `~/.claude/skills/`. MIT licensed.
 
 ## Instalación
 
@@ -62,7 +66,7 @@ claude plugin install agx-skills@agx-skills
 ```
 
 Instaladas como plugin, las skills llevan el prefijo del plugin:
-`/agx-skills:auditoria-sitio-vibecodeado` y `/agx-skills:revision-antes-de-lanzar`.
+`/agx-skills:auditoria-web` y `/agx-skills:revision-pre-lanzamiento`.
 
 ### 3. Manual
 
@@ -75,8 +79,8 @@ skills personales:
 Debe quedar así, sin carpetas de más en medio:
 
 ```
-.claude/skills/auditoria-sitio-vibecodeado/SKILL.md
-.claude/skills/revision-antes-de-lanzar/SKILL.md
+.claude/skills/auditoria-web/SKILL.md
+.claude/skills/revision-pre-lanzamiento/SKILL.md
 ```
 
 En macOS o Linux puedes hacerlo de una vez:
@@ -95,11 +99,11 @@ Abre una sesión nueva de Claude Code y escribe `/` para verlas.
 En cualquier sesión de Claude Code, dentro de tu proyecto:
 
 ```
-/auditoria-sitio-vibecodeado
+/auditoria-web
 ```
 
 ```
-/revision-antes-de-lanzar
+/revision-pre-lanzamiento
 ```
 
 Claude también las activa solo cuando pides algo como *"revisa la web antes de
@@ -109,7 +113,7 @@ sobre las de la skill.
 ### Qué entregan
 
 Una tabla con cada punto revisado, ordenada por impacto. Por ejemplo, la
-auditoría:
+Auditoría Web:
 
 | Señal | Estado | Evidencia | Corrección propuesta |
 |---|---|---|---|
@@ -118,13 +122,53 @@ auditoría:
 | 14. Favicon | OK | `favicon.ico`, `apple-touch-icon` y manifest 512×512 | — |
 | 19. Consola | Falla | 2 errores de hidratación en `/contacto` | Mover la fecha al cliente |
 
-Y la revisión antes de lanzar cierra con una decisión:
+Y la Revisión Pre lanzamiento cierra con una decisión. Lo que no pudo
+comprobar queda como **No verificado**, nunca como OK:
 
 | Revisión | Resultado | Pendiente |
 |---|---|---|
-| 1. Pruebas | 6 de 6 flujos críticos pasan | — |
-| 3. Privacidad | Falta la política de privacidad | Publicarla y enlazarla desde el registro |
-| 5. Seguridad | 1 hallazgo crítico: la cuenta A ve datos de B | Activar RLS en `pedidos`. **No se lanza** hasta corregirlo |
+| 1. Pruebas | OK: 6 de 6 flujos críticos pasan | — |
+| 3. Privacidad | Falla: falta la autorización de tratamiento de datos en el registro | Casilla sin marcar con enlace a la política y prueba guardada |
+| 4. Rendimiento | No verificado: no hay entorno de staging para la prueba de carga | Crear staging y repetir |
+| 5. Seguridad | Falla crítica: la cuenta A ve datos de B | Activar RLS en `pedidos`. **No se lanza** hasta corregirlo |
+
+## Cambios
+
+### 2.0.0
+
+Las skills cambiaron de nombre:
+
+| Antes | Ahora |
+|---|---|
+| `auditoria-sitio-vibecodeado` | `auditoria-web` (**Auditoría Web**) |
+| `revision-antes-de-lanzar` | `revision-pre-lanzamiento` (**Revisión Pre lanzamiento**) |
+
+Además, la Revisión Pre lanzamiento ahora prueba solo en localhost o staging,
+usa datos de prueba con prefijo `test-` o `qa-` que borra al terminar, marca
+como **No verificado** lo que no pudo comprobar y revisa la autorización de
+tratamiento de datos que exige la ley colombiana.
+
+**Cómo actualizar:**
+
+- **CLI `skills`:** borra las viejas e instala las nuevas (añade `-g` si las
+  instalaste globalmente).
+
+  ```bash
+  npx skills remove auditoria-sitio-vibecodeado revision-antes-de-lanzar
+  ```
+
+  ```bash
+  npx skills add Checho-Aguirre/agx-skills
+  ```
+
+- **Plugin:** el plugin sigue llamándose `agx-skills`; solo actualízalo.
+
+  ```
+  /plugin marketplace update agx-skills
+  ```
+
+- **Manual:** borra las carpetas `auditoria-sitio-vibecodeado` y
+  `revision-antes-de-lanzar` de tu carpeta de skills y copia las nuevas.
 
 ## Créditos
 
