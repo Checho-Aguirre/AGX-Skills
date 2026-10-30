@@ -1,9 +1,9 @@
 ---
-name: revision-antes-de-lanzar
+name: "revision-pre-lanzamiento"
 description: "Revisión en 5 pasos antes de publicar una app o web hecha con IA: pruebas end-to-end, prueba con agente, privacidad, rendimiento y seguridad. Úsala antes de cada lanzamiento."
 ---
 
-# Revisión antes de lanzar
+# Revisión Pre lanzamiento
 
 Cinco revisiones en orden, cada una con checklist. Adapta cada paso al tipo de
 proyecto: una web estática no tiene login ni base de datos; una app con cuentas
