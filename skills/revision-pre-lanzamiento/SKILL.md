@@ -5,6 +5,9 @@ description: "Revisión en 5 pasos antes de publicar una app o web hecha con IA:
 
 # Revisión Pre lanzamiento
 
+Se complementa con `auditoria-web`, que revisa SEO técnico, metadatos y
+detalles visibles del sitio.
+
 Cinco revisiones en orden, cada una con checklist. Adapta cada paso al tipo de
 proyecto: una web estática no tiene login ni base de datos; una app con cuentas
 (por ejemplo con Supabase o Firebase) necesita todo.
@@ -14,7 +17,14 @@ proyecto: una web estática no tiene login ni base de datos; una app con cuentas
 - Lee `CLAUDE.md` y `DESIGN.md` si existen; mandan sobre esta skill.
 - **Congela la versión:** trabaja en una rama de lanzamiento y no agregues
   funciones nuevas mientras revisas.
-- Solo datos y cuentas de prueba. Nunca claves ni datos de producción.
+- Prueba solo contra localhost o staging, nunca contra producción.
+- Solo datos y cuentas de prueba, con prefijo `test-` o `qa-`, y bórralos al
+  terminar. Nunca claves ni datos de producción.
+- Nunca escribas contraseñas, tokens ni claves en el chat, en archivos del repo
+  ni en logs.
+- **No declares OK lo que no verificaste.** Cada punto queda en uno de tres
+  estados: OK, falla o **No verificado**, este último con el motivo (sin
+  acceso, sin entorno de staging, requiere a una persona, etc.).
 - No cambies diseño ni textos. Las correcciones de rendimiento o seguridad que
   cambien algo visible se proponen y esperan aprobación.
 - Commit y push después de cada revisión. Si una corrección rompe algo, vuelve
@@ -32,6 +42,8 @@ proyecto: una web estática no tiene login ni base de datos; una app con cuentas
 - En escritorio y celular.
 - Que corran solos en cada push y PR (GitHub Actions o similar).
 - Si un fallo viene de la app, explicar causa y corrección antes de aplicarla.
+- Un flujo cuyo test no se pudo correr queda **No verificado**, con el motivo;
+  nunca como OK.
 
 ## 2. Prueba con agente
 
@@ -58,6 +70,11 @@ gravedad y captura. Cerrar con los cinco más graves.
 - Usar la ley del país del responsable (en Colombia, Ley 1581 de 2012; en
   Ecuador, LOPDP); RGPD solo si hay usuarios en la UE. Marcar lo que debe
   validar un abogado. No inventar nada que no esté en el código.
+- Colombia, si hay cuentas o formularios: Política de Tratamiento de Datos
+  publicada y autorización previa, expresa e informada del titular antes de
+  recoger sus datos (casilla sin marcar por defecto y enlace a la política),
+  con prueba guardada de cada autorización (quién, cuándo y qué versión de la
+  política aceptó).
 
 ## 4. Rendimiento
 
@@ -84,7 +101,7 @@ gravedad y captura. Cerrar con los cinco más graves.
 - Rutas de administrador inaccesibles para usuarios normales.
 - Validación de entradas en el servidor, límite de peticiones real y CORS
   restringido al dominio propio.
-- Dependencias auditadas (`npm audit`, `pip-audit`) y errores sin detalles
+- Dependencias auditadas (`npm audit`, `pnpm audit`, `pip-audit`) y errores sin detalles
   internos.
 - **Prueba manual de dos cuentas** (si hay cuentas): crear A y B, guardar un
   dato privado con B, entrar con A e intentar verlo cambiando el id en la URL o
@@ -98,12 +115,16 @@ gravedad y captura. Cerrar con los cinco más graves.
 |---|---|
 | 1. Pruebas | Todos los flujos críticos con test que pasa |
 | 2. Agente | Tres perfiles sin errores de gravedad alta |
-| 3. Privacidad | Datos inventariados y política publicada |
+| 3. Privacidad | Datos inventariados y política publicada; en Colombia, con cuentas o formularios, Política de Tratamiento de Datos publicada y autorización previa, expresa e informada con prueba guardada |
 | 4. Rendimiento | Core Web Vitals en verde (y carga superada si hay backend) |
 | 5. Seguridad | Cero hallazgos críticos o altos y prueba de dos cuentas superada |
 
+Un punto **No verificado** no cuenta como cumplido.
+
 ## Cierre
 
-Tabla final: revisión, resultado, pendiente. Después, una decisión de
-lanzamiento: qué impide lanzar hoy, qué puede esperar a la siguiente versión y
-qué vigilar la primera semana.
+1. Borra primero los datos y cuentas de prueba (`test-`, `qa-`) que se crearon.
+2. Tabla final: revisión, resultado (OK / falla / No verificado, con motivo) y
+   pendiente.
+3. Una decisión de lanzamiento: qué impide lanzar hoy, qué puede esperar a la
+   siguiente versión y qué vigilar la primera semana.

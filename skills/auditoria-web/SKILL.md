@@ -5,6 +5,9 @@ description: "Audita una web o landing para que no se note hecha con IA: SEO té
 
 # Auditoría Web
 
+Se complementa con `revision-pre-lanzamiento`, que cubre pruebas, privacidad,
+rendimiento y seguridad antes de lanzar.
+
 Revisa una web pública y detecta los detalles que delatan que se armó con IA sin
 revisión: cosas que no rompen el sitio pero lo hacen ver poco profesional e
 invisible para buscadores y redes. Primero **audita y reporta**; corrige solo
