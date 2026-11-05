@@ -16,3 +16,6 @@ desktop.ini
 node_modules/
 *.log
 *.zip
+
+# Estado local de plugins (Oh My Claude Code)
+.omc/

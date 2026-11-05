@@ -1,25 +1,30 @@
 # AGX Skills · revisión web para Claude Code
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
-[![Versión](https://img.shields.io/badge/versión-2.2.0-green.svg)](#cambios)
+[![Versión](https://img.shields.io/badge/versión-2.3.0-green.svg)](#cambios)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skills-d97757.svg)](https://code.claude.com/docs/en/skills)
 
-Tres skills que revisan tu web o app hecha con IA antes de publicarla, para que
-no se note improvisada y no salga con fallos graves.
+Cinco skills que revisan y mejoran tu web o app hecha con IA antes de
+publicarla, para que no se note improvisada, no salga con fallos graves y no te
+traiga problemas legales.
 
 | Skill | Comando | Qué revisa |
 |---|---|---|
 | [**Auditoría Web**](skills/auditoria-web/SKILL.md) | `/auditoria-web` | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
 | [**Revisión Pre lanzamiento**](skills/revision-pre-lanzamiento/SKILL.md) | `/revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento (con escalabilidad y caché) y seguridad (con sesiones, límites de peticiones, topes de gasto y monitoreo). Cierra con el despliegue: vuelta atrás, copias de seguridad probadas y apps móviles |
 | [**AGX Security Check**](skills/agx-security-check/SKILL.md) | `/agx-security-check` | Auditoría de seguridad del código completo: 20 fallas comunes (secretos, permisos, IDs adivinables, inyección, XSS, mass assignment, webhooks, subidas), escáneres gratuitos, arreglos de uno en uno y blindaje con `CLAUDE.md`, un hook anti-secretos y revisión automática de cada PR |
+| [**AGX Revisión Legal**](skills/agx-revision-legal/SKILL.md) | `/agx-revision-legal` | Riesgos legales en 12 pasos: datos personales (Ley 1581), cookies comprobadas en el navegador, consentimiento con prueba guardada, páginas legales, retracto y garantía (Ley 1480), accesibilidad WCAG 2.2 AA, reseñas y cifras dudosas, datos del negocio, derechos de autor y normas del sector. Cierra con un informe de riesgos para el abogado |
+| [**AGX Optimización Web**](skills/agx-optimizacion-web/SKILL.md) | `/agx-optimizacion-web` | Hace más rápida la web sin cambiar diseño, textos ni funciones: 20 puntos de imágenes, fuentes, código y entrega, cada uno con cuándo aplicarlo y cuándo saltarlo, un commit por cambio y Lighthouse en celular antes y después |
 
-Se complementan: la primera cuida lo que ven buscadores, redes y visitantes; la
-segunda, que la app funcione, proteja los datos y cumpla la ley; la tercera baja
-al código para encontrar las fallas de seguridad que una app hecha con IA suele
-tener. Las tres **primero auditan y reportan**; solo corrigen lo que tú apruebes.
+Se complementan: Auditoría Web cuida lo que ven buscadores, redes y visitantes;
+Revisión Pre lanzamiento, que la app funcione y proteja los datos; AGX Security
+Check baja al código para encontrar fallas de seguridad; AGX Revisión Legal
+revisa lo que puede traer una sanción o un reclamo; y AGX Optimización Web
+aplica las mejoras de rendimiento que las demás solo miden. Todas **primero
+auditan y reportan**; solo cambian lo que tú apruebes.
 
-> **English summary:** Three Claude Code skills (in Spanish) to review a website
-> or app built with AI before launch. **Auditoría Web** (`/auditoria-web`)
+> **English summary:** Five Claude Code skills (in Spanish) to review and
+> improve a website or app built with AI before launch. **Auditoría Web** (`/auditoria-web`)
 > checks 20 signs of an unreviewed AI-built site (technical SEO, metadata, 404,
 > favicon, console errors, page weight). **Revisión Pre lanzamiento**
 > (`/revision-pre-lanzamiento`) runs a 5-step pre-launch review: end-to-end
@@ -29,7 +34,14 @@ tener. Las tres **primero auditan y reportan**; solo corrigen lo que tú apruebe
 > **AGX Security Check** (`/agx-security-check`) audits the whole codebase for
 > 20 common security flaws (secrets, authorization, IDOR, injection, XSS,
 > webhooks, uploads), runs free scanners, fixes findings one by one and adds
-> guardrails so they don't come back. Install with
+> guardrails so they don't come back. **AGX Revisión Legal**
+> (`/agx-revision-legal`) reviews legal risks under Colombian law by default:
+> personal data, cookies checked in the browser, consent, legal pages, consumer
+> rights, WCAG 2.2 AA accessibility, misleading claims, copyright and
+> sector rules, and ends with a risk report for a lawyer. **AGX Optimización
+> Web** (`/agx-optimizacion-web`) makes the site faster without changing its
+> design, copy or behavior: 20 checks, one commit per change, and mobile
+> Lighthouse before and after. Install with
 > `npx skills add Checho-Aguirre/agx-skills`, as a Claude Code plugin, or by
 > copying the folders into `~/.claude/skills/`. MIT licensed.
 
@@ -73,12 +85,13 @@ claude plugin install agx-skills@agx-skills
 ```
 
 Instaladas como plugin, las skills llevan el prefijo del plugin:
-`/agx-skills:auditoria-web`, `/agx-skills:revision-pre-lanzamiento` y
-`/agx-skills:agx-security-check`.
+`/agx-skills:auditoria-web`, `/agx-skills:revision-pre-lanzamiento`,
+`/agx-skills:agx-security-check`, `/agx-skills:agx-revision-legal` y
+`/agx-skills:agx-optimizacion-web`.
 
 ### 3. Manual
 
-Descarga el repositorio y copia las tres carpetas de `skills/` en tu carpeta de
+Descarga el repositorio y copia las cinco carpetas de `skills/` en tu carpeta de
 skills personales:
 
 - **macOS / Linux:** `~/.claude/skills/`
@@ -90,6 +103,8 @@ Debe quedar así, sin carpetas de más en medio:
 .claude/skills/auditoria-web/SKILL.md
 .claude/skills/revision-pre-lanzamiento/SKILL.md
 .claude/skills/agx-security-check/SKILL.md
+.claude/skills/agx-revision-legal/SKILL.md
+.claude/skills/agx-optimizacion-web/SKILL.md
 ```
 
 En macOS o Linux puedes hacerlo de una vez:
@@ -119,8 +134,17 @@ En cualquier sesión de Claude Code, dentro de tu proyecto:
 /agx-security-check
 ```
 
+```
+/agx-revision-legal
+```
+
+```
+/agx-optimizacion-web
+```
+
 Claude también las activa solo cuando pides algo como *"revisa la web antes de
-publicarla"* o *"audita la seguridad de este proyecto"*. Si tu proyecto tiene `CLAUDE.md` o `DESIGN.md`, sus reglas mandan
+publicarla"*, *"audita la seguridad de este proyecto"*, *"revisa los riesgos
+legales"* o *"haz más rápida la web"*. Si tu proyecto tiene `CLAUDE.md` o `DESIGN.md`, sus reglas mandan
 sobre las de la skill.
 
 ### Qué entregan
@@ -157,7 +181,36 @@ secretos que encuentra:
 | 19 | Webhooks sin firma | No aplica | — | — | — | No hay webhooks |
 | 5 | Dependencias | No verificado | — | — | — | Falta osv-scanner; instalarlo y repetir |
 
+AGX Revisión Legal marca qué debe ver un abogado y separa lo que bloquea el
+lanzamiento:
+
+| Punto | Estado | Evidencia | Corrección | ¿Abogado? |
+|---|---|---|---|---|
+| 3. Autorización en el formulario | Falla | La casilla de `/contacto` viene marcada | Dejarla sin marcar y guardar la prueba de cada envío | No |
+| 2. Política de cookies | Falla | Lista 4 cookies de analítica; en el navegador no aparece ninguna | Listar solo `tema` en `localStorage` | Sí |
+| 8. Veracidad | No verificado | "+500 clientes" en el inicio | Preguntar al dueño de dónde sale la cifra | No |
+| 11. RNBD | No verificado | Falta saber los activos del responsable | Confirmar con el contador | Sí |
+
 ## Cambios
+
+### 2.3.0
+
+Dos skills nuevas:
+
+- **AGX Revisión Legal** (`/agx-revision-legal`): revisión legal en 12 pasos
+  con la ley del país del responsable (Colombia por defecto), cookies
+  comprobadas en el navegador y un informe de riesgos para el abogado.
+- **AGX Optimización Web** (`/agx-optimizacion-web`): 20 mejoras de
+  rendimiento que se aplican de una en una, sin cambiar diseño, textos ni
+  funciones, con Lighthouse antes y después.
+
+Además, el paso 3 de la Revisión Pre lanzamiento ahora resume y llama a la
+revisión legal, y su paso 4 y la señal 20 de la Auditoría Web miden y remiten a
+la optimización para aplicar las mejoras.
+
+Para tenerlas: con el CLI `skills`, vuelve a correr
+`npx skills add Checho-Aguirre/agx-skills`; como plugin,
+`/plugin marketplace update agx-skills`.
 
 ### 2.2.0
 
