@@ -59,7 +59,9 @@ revisar; una app con cuentas y pagos, todo.
 - Todas las peticiones a dominios externos (pestaña de red y el build) y los
   scripts de terceros: fuentes, analítica, píxeles, chats, mapas, videos,
   widgets.
-- Formularios: cada campo, si es obligatorio y a dónde se envía.
+- Formularios: cada campo, si es obligatorio y a dónde se envía. Incluye los
+  formularios y funciones que existen en el código pero están apagados: se
+  revisan igual, para que no se activen sin cumplir.
 
 ## 2. Páginas legales
 
@@ -94,7 +96,8 @@ cuentas). Cada una con versión y fecha.
   no vende nada, decirlo claro y no inventar precios ni planes.
 - **Garantía** (Ley 1480, arts. 7 y siguientes) si vende productos o presta
   servicios: cómo reclamarla y en qué plazo, sin condiciones abusivas ni
-  términos por debajo del mínimo legal. Si recibe bienes del cliente (por
+  términos por debajo del mínimo legal. Si presta servicios: precio y alcance
+  aprobados por el cliente antes de empezar. Si recibe bienes del cliente (por
   ejemplo, reparaciones), las condiciones de recibo y custodia y la
   confidencialidad de lo que contengan.
 - Si hay traducciones: un aviso de qué versión prevalece.
@@ -135,6 +138,9 @@ nada, un enlace `mailto:` o de WhatsApp puede reemplazar el formulario.
   revisar en su documentación actual qué datos recoge para declararlo.
 - CAPTCHAs de terceros: preferir honeypot y límite de envíos; si se usa uno,
   declararlo.
+- Planes gratuitos de hosting, APIs, plantillas o librerías: que sus términos
+  vigentes permitan el uso comercial. Si no se pudo confirmar, **No
+  verificado**.
 
 ## 6. Accesibilidad (WCAG 2.2 AA)
 
@@ -219,8 +225,9 @@ sectores (salud, educación, finanzas, alimentos, menores de edad...).
   tamaño del responsable. Verifica el umbral vigente; una persona natural o una
   empresa pequeña puede no estar obligada.
 - **Apps en tiendas:** formulario de Seguridad de los datos (Google Play) o
-  etiquetas de privacidad (App Store), URL de la política, y eliminación de
-  cuenta dentro de la app y desde una web.
+  etiquetas de privacidad (App Store), URL de una política que cubra esa app
+  (la de la web, si la incluye, o una propia), y eliminación de cuenta dentro
+  de la app y desde una web.
 
 ## 12. Informe de riesgos
 
@@ -232,6 +239,11 @@ Una tabla, ordenada por gravedad:
 - **Evidencia:** archivo y línea, ruta, captura o lo visto en la pestaña de red.
 - **¿Abogado?:** sí en todo texto legal, en las normas que no se pudieron
   verificar y en los casos dudosos.
+
+Después, los **compromisos que prometen los textos** y que el responsable debe
+poder cumplir: responder consultas y reclamos a tiempo, devolver el dinero en
+el plazo prometido, recordar el retracto antes de empezar un servicio y avisar
+a la SIC si hay un incidente de seguridad.
 
 Al final, dos listas: los pendientes que **bloquean el lanzamiento** y los que
 **pueden esperar**. Ofrece guardar el informe en `docs/informe-de-riesgos.md`
