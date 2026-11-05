@@ -1,7 +1,7 @@
 # AGX Skills · revisión web para Claude Code
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
-[![Versión](https://img.shields.io/badge/versión-2.3.0-green.svg)](#cambios)
+[![Versión](https://img.shields.io/badge/versión-3.0.0-green.svg)](#cambios)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skills-d97757.svg)](https://code.claude.com/docs/en/skills)
 
 Cinco skills que revisan y mejoran tu web o app hecha con IA antes de
@@ -10,24 +10,24 @@ traiga problemas legales.
 
 | Skill | Comando | Qué revisa |
 |---|---|---|
-| [**Auditoría Web**](skills/auditoria-web/SKILL.md) | `/auditoria-web` | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
-| [**Revisión Pre lanzamiento**](skills/revision-pre-lanzamiento/SKILL.md) | `/revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento (con escalabilidad y caché) y seguridad (con sesiones, límites de peticiones, topes de gasto y monitoreo). Cierra con el despliegue: vuelta atrás, copias de seguridad probadas y apps móviles |
+| [**AGX Auditoría Web**](skills/agx-auditoria-web/SKILL.md) | `/agx-auditoria-web` | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
+| [**AGX Revisión Pre lanzamiento**](skills/agx-revision-pre-lanzamiento/SKILL.md) | `/agx-revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento (con escalabilidad y caché) y seguridad (con sesiones, límites de peticiones, topes de gasto y monitoreo). Cierra con el despliegue: vuelta atrás, copias de seguridad probadas y apps móviles |
 | [**AGX Security Check**](skills/agx-security-check/SKILL.md) | `/agx-security-check` | Auditoría de seguridad del código completo: 20 fallas comunes (secretos, permisos, IDs adivinables, inyección, XSS, mass assignment, webhooks, subidas), escáneres gratuitos, arreglos de uno en uno y blindaje con `CLAUDE.md`, un hook anti-secretos y revisión automática de cada PR |
 | [**AGX Revisión Legal**](skills/agx-revision-legal/SKILL.md) | `/agx-revision-legal` | Riesgos legales en 12 pasos: datos personales (Ley 1581), cookies comprobadas en el navegador, consentimiento con prueba guardada, páginas legales, retracto y garantía (Ley 1480), accesibilidad WCAG 2.2 AA, reseñas y cifras dudosas, datos del negocio, derechos de autor y normas del sector. Cierra con un informe de riesgos para el abogado |
 | [**AGX Optimización Web**](skills/agx-optimizacion-web/SKILL.md) | `/agx-optimizacion-web` | Hace más rápida la web sin cambiar diseño, textos ni funciones: 20 puntos de imágenes, fuentes, código y entrega, cada uno con cuándo aplicarlo y cuándo saltarlo, un commit por cambio y Lighthouse en celular antes y después |
 
-Se complementan: Auditoría Web cuida lo que ven buscadores, redes y visitantes;
-Revisión Pre lanzamiento, que la app funcione y proteja los datos; AGX Security
+Se complementan: AGX Auditoría Web cuida lo que ven buscadores, redes y visitantes;
+AGX Revisión Pre lanzamiento, que la app funcione y proteja los datos; AGX Security
 Check baja al código para encontrar fallas de seguridad; AGX Revisión Legal
 revisa lo que puede traer una sanción o un reclamo; y AGX Optimización Web
 aplica las mejoras de rendimiento que las demás solo miden. Todas **primero
 auditan y reportan**; solo cambian lo que tú apruebes.
 
 > **English summary:** Five Claude Code skills (in Spanish) to review and
-> improve a website or app built with AI before launch. **Auditoría Web** (`/auditoria-web`)
+> improve a website or app built with AI before launch. **AGX Auditoría Web** (`/agx-auditoria-web`)
 > checks 20 signs of an unreviewed AI-built site (technical SEO, metadata, 404,
-> favicon, console errors, page weight). **Revisión Pre lanzamiento**
-> (`/revision-pre-lanzamiento`) runs a 5-step pre-launch review: end-to-end
+> favicon, console errors, page weight). **AGX Revisión Pre lanzamiento**
+> (`/agx-revision-pre-lanzamiento`) runs a 5-step pre-launch review: end-to-end
 > tests, agent-driven testing, privacy, performance and security (sessions,
 > rate limits, spending caps, monitoring), then checks deployment (rollback,
 > tested backups, mobile apps), and never marks as OK what it couldn't verify.
@@ -85,7 +85,7 @@ claude plugin install agx-skills@agx-skills
 ```
 
 Instaladas como plugin, las skills llevan el prefijo del plugin:
-`/agx-skills:auditoria-web`, `/agx-skills:revision-pre-lanzamiento`,
+`/agx-skills:agx-auditoria-web`, `/agx-skills:agx-revision-pre-lanzamiento`,
 `/agx-skills:agx-security-check`, `/agx-skills:agx-revision-legal` y
 `/agx-skills:agx-optimizacion-web`.
 
@@ -100,8 +100,8 @@ skills personales:
 Debe quedar así, sin carpetas de más en medio:
 
 ```
-.claude/skills/auditoria-web/SKILL.md
-.claude/skills/revision-pre-lanzamiento/SKILL.md
+.claude/skills/agx-auditoria-web/SKILL.md
+.claude/skills/agx-revision-pre-lanzamiento/SKILL.md
 .claude/skills/agx-security-check/SKILL.md
 .claude/skills/agx-revision-legal/SKILL.md
 .claude/skills/agx-optimizacion-web/SKILL.md
@@ -123,11 +123,11 @@ Abre una sesión nueva de Claude Code y escribe `/` para verlas.
 En cualquier sesión de Claude Code, dentro de tu proyecto:
 
 ```
-/auditoria-web
+/agx-auditoria-web
 ```
 
 ```
-/revision-pre-lanzamiento
+/agx-revision-pre-lanzamiento
 ```
 
 ```
@@ -150,7 +150,7 @@ sobre las de la skill.
 ### Qué entregan
 
 Una tabla con cada punto revisado, ordenada por impacto. Por ejemplo, la
-Auditoría Web:
+AGX Auditoría Web:
 
 | Señal | Estado | Evidencia | Corrección propuesta |
 |---|---|---|---|
@@ -159,7 +159,7 @@ Auditoría Web:
 | 14. Favicon | OK | `favicon.ico`, `apple-touch-icon` y manifest 512×512 | — |
 | 19. Consola | Falla | 2 errores de hidratación en `/contacto` | Mover la fecha al cliente |
 
-Y la Revisión Pre lanzamiento cierra con una decisión. Lo que no pudo
+Y la AGX Revisión Pre lanzamiento cierra con una decisión. Lo que no pudo
 comprobar queda como **No verificado**, nunca como OK:
 
 | Revisión | Resultado | Pendiente |
@@ -193,9 +193,16 @@ lanzamiento:
 
 ## Cambios
 
-### 2.3.0
+### 3.0.0
 
-Dos skills nuevas:
+Todas las skills llevan ahora el prefijo `agx-`. Dos cambiaron de nombre:
+
+| Antes | Ahora |
+|---|---|
+| `auditoria-web` | `agx-auditoria-web` (**AGX Auditoría Web**) |
+| `revision-pre-lanzamiento` | `agx-revision-pre-lanzamiento` (**AGX Revisión Pre lanzamiento**) |
+
+Y hay dos skills nuevas:
 
 - **AGX Revisión Legal** (`/agx-revision-legal`): revisión legal en 12 pasos
   con la ley del país del responsable (Colombia por defecto), cookies
@@ -204,13 +211,33 @@ Dos skills nuevas:
   rendimiento que se aplican de una en una, sin cambiar diseño, textos ni
   funciones, con Lighthouse antes y después.
 
-Además, el paso 3 de la Revisión Pre lanzamiento ahora resume y llama a la
-revisión legal, y su paso 4 y la señal 20 de la Auditoría Web miden y remiten a
-la optimización para aplicar las mejoras.
+Además, el paso 3 de AGX Revisión Pre lanzamiento ahora resume y llama a la
+revisión legal, y su paso 4 y la señal 20 de AGX Auditoría Web miden y remiten
+a la optimización para aplicar las mejoras.
 
-Para tenerlas: con el CLI `skills`, vuelve a correr
-`npx skills add Checho-Aguirre/agx-skills`; como plugin,
-`/plugin marketplace update agx-skills`.
+**Cómo actualizar:**
+
+- **CLI `skills`:** borra las viejas e instala todas de nuevo (añade `-g` si
+  las instalaste globalmente).
+
+  ```bash
+  npx skills remove auditoria-web revision-pre-lanzamiento
+  ```
+
+  ```bash
+  npx skills add Checho-Aguirre/agx-skills
+  ```
+
+- **Plugin:** sigue llamándose `agx-skills`; solo actualízalo. Los comandos
+  pasan a ser `/agx-skills:agx-auditoria-web` y
+  `/agx-skills:agx-revision-pre-lanzamiento`.
+
+  ```
+  /plugin marketplace update agx-skills
+  ```
+
+- **Manual:** borra las carpetas `auditoria-web` y `revision-pre-lanzamiento`
+  de tu carpeta de skills y copia las cinco de `skills/`.
 
 ### 2.2.0
 

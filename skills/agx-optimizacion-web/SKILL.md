@@ -1,12 +1,12 @@
 ---
 name: "agx-optimizacion-web"
-description: "Hace más rápida una web sin cambiar su diseño, sus textos ni sus funciones: 20 puntos de imágenes, fuentes, código y entrega, cada uno con cuándo aplicarlo y cuándo saltarlo, un commit por cambio y Lighthouse en celular antes y después. Úsala cuando auditoria-web o revision-pre-lanzamiento marquen el peso o los Core Web Vitals en falla, o cuando quieras aplicar las mejoras de rendimiento, no solo medirlas."
+description: "Hace más rápida una web sin cambiar su diseño, sus textos ni sus funciones: 20 puntos de imágenes, fuentes, código y entrega, cada uno con cuándo aplicarlo y cuándo saltarlo, un commit por cambio y Lighthouse en celular antes y después. Úsala cuando agx-auditoria-web o agx-revision-pre-lanzamiento marquen el peso o los Core Web Vitals en falla, o cuando quieras aplicar las mejoras de rendimiento, no solo medirlas."
 ---
 
 # AGX Optimización Web
 
-Se complementa con `auditoria-web`, que mide el peso en su señal 20, y con
-`revision-pre-lanzamiento`, que mide el rendimiento en su paso 4. Las dos
+Se complementa con `agx-auditoria-web`, que mide el peso en su señal 20, y con
+`agx-revision-pre-lanzamiento`, que mide el rendimiento en su paso 4. Las dos
 miden y reportan; esta skill **aplica** los cambios, de uno en uno, y mide el
 resultado.
 
