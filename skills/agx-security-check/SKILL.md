@@ -9,7 +9,9 @@ Se complementa con `revision-pre-lanzamiento`, que revisa la seguridad general
 antes de lanzar, y con `auditoria-web`, que revisa lo visible del sitio. Esta
 skill baja al código: busca las fallas que una app hecha con IA suele tener y
 que ni los escáneres ni el comando `/security-review` (solo revisa el diff de la
-rama) encuentran.
+rama) encuentran. Cruza con `agx-revision-legal` en tres puntos: datos
+personales en logs y errores (falla 3), CSP de los scripts de terceros, y
+validación y límite de envíos de los formularios (fallas 13 y 14).
 
 ## Reglas
 

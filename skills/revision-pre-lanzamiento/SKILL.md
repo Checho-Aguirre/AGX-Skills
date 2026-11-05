@@ -6,7 +6,9 @@ description: "Revisión en 5 pasos antes de publicar una app o web hecha con IA:
 # Revisión Pre lanzamiento
 
 Se complementa con `auditoria-web`, que revisa SEO técnico, metadatos y
-detalles visibles del sitio.
+detalles visibles del sitio; con `agx-revision-legal`, que hace la revisión
+legal completa del paso 3; y con `agx-optimizacion-web`, que aplica las
+mejoras de rendimiento del paso 4.
 
 Cinco revisiones en orden, cada una con checklist. Adapta cada paso al tipo de
 proyecto: una web estática no tiene login ni base de datos; una app con cuentas
@@ -62,22 +64,13 @@ gravedad y captura. Cerrar con los cinco más graves.
 
 ## 3. Privacidad y legal
 
-- Inventario de datos personales: qué se recoge, dónde se guarda, cuánto tiempo
-  y a qué servicios externos va (IA, correo, pagos, analítica, hosting).
-- Clasificar cookies y scripts en esenciales y no esenciales; banner con opción
-  real de rechazar solo si hay no esenciales.
-- Política de privacidad y términos publicados y enlazados (desde el registro, si
-  hay cuentas).
-- Avisar si se envían datos a APIs de IA externas.
-- Permitir exportar y eliminar la cuenta y sus datos, si hay cuentas.
-- Usar la ley del país del responsable (en Colombia, Ley 1581 de 2012; en
-  Ecuador, LOPDP); RGPD solo si hay usuarios en la UE. Marcar lo que debe
-  validar un abogado. No inventar nada que no esté en el código.
-- Colombia, si hay cuentas o formularios: Política de Tratamiento de Datos
-  publicada y autorización previa, expresa e informada del titular antes de
-  recoger sus datos (casilla sin marcar por defecto y enlace a la política),
-  con prueba guardada de cada autorización (quién, cuándo y qué versión de la
-  política aceptó).
+Corre `agx-revision-legal` en modo reporte y trae aquí su resultado. En
+resumen, revisa: inventario de datos personales y de cookies comprobadas en el
+navegador, páginas legales, consentimiento previo y autorización con prueba
+guardada, minimización de formularios, terceros embebidos, accesibilidad,
+veracidad de reseñas y cifras, datos del negocio, derechos de autor y normas
+del sector, con la ley del país del responsable. Si esa skill no está
+instalada, márcalo **No verificado** y avísale al usuario.
 
 ## 4. Rendimiento
 
@@ -97,7 +90,9 @@ gravedad y captura. Cerrar con los cinco más graves.
   cachearlos y cómo invalidar la caché; marcar el riesgo de mostrar datos
   viejos. Nunca cachear datos personales ni de usuarios con sesión en cachés
   compartidas (CDN).
-- Ordenar mejoras por impacto y no aplicar sin aprobación.
+- Ordenar mejoras por impacto. Las del frontend se aplican con
+  `agx-optimizacion-web` (un commit por cambio, sin tocar diseño ni textos);
+  las del backend, y todo lo que cambie algo visible, esperan aprobación.
 
 ## 5. Seguridad (no se salta)
 

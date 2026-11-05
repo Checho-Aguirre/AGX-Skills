@@ -6,7 +6,9 @@ description: "Audita una web o landing para que no se note hecha con IA: SEO té
 # Auditoría Web
 
 Se complementa con `revision-pre-lanzamiento`, que cubre pruebas, privacidad,
-rendimiento y seguridad previas al lanzamiento.
+rendimiento y seguridad previas al lanzamiento; con `agx-revision-legal`, que
+cruza el `alt` (señal 17) y el JSON-LD sin reseñas inventadas (señal 8); y con
+`agx-optimizacion-web`, que aplica las mejoras de la señal 20.
 
 Revisa una web pública y detecta los detalles que delatan que se armó con IA sin
 revisión: cosas que no rompen el sitio pero lo hacen ver poco profesional e
@@ -87,7 +89,8 @@ o SPA), los idiomas y el dominio configurado.
 20. **Peso:** Lighthouse en modo **celular**. Revisar librerías de animación
     enteras para pocos efectos, paquetes de íconos completos, fuentes en pesos
     sin usar, imágenes sin optimizar o sin width/height, y carga diferida de lo
-    que está bajo el pliegue. Metas: LCP ≤ 2,5 s, CLS ≤ 0,1.
+    que está bajo el pliegue. Metas: LCP ≤ 2,5 s, CLS ≤ 0,1. Aquí solo se mide
+    y se reporta; para aplicar las mejoras, usar `agx-optimizacion-web`.
 
 ## Paso 3: Reporte
 
