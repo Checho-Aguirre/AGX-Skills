@@ -1,8 +1,8 @@
 {
   "name": "agx-skills",
   "displayName": "AGX Skills",
-  "version": "2.3.0",
-  "description": "Auditoría Web (20 señales de un sitio hecho con IA sin revisión), Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos), AGX Security Check (auditoría de seguridad del código con 20 fallas comunes), AGX Revisión Legal (datos personales, consentimiento, textos legales, accesibilidad y veracidad en 12 pasos) y AGX Optimización Web (20 mejoras de rendimiento sin cambiar el diseño).",
+  "version": "3.0.0",
+  "description": "AGX Auditoría Web (20 señales de un sitio hecho con IA sin revisión), AGX Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos), AGX Security Check (auditoría de seguridad del código con 20 fallas comunes), AGX Revisión Legal (datos personales, consentimiento, textos legales, accesibilidad y veracidad en 12 pasos) y AGX Optimización Web (20 mejoras de rendimiento sin cambiar el diseño).",
   "author": {
     "name": "Sergio Granados Aguirre (AGX Tech And Code)",
     "url": "https://github.com/Checho-Aguirre"

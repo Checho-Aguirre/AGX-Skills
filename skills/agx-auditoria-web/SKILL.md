@@ -1,11 +1,11 @@
 ---
-name: "auditoria-web"
+name: "agx-auditoria-web"
 description: "Audita una web o landing para que no se note hecha con IA: SEO técnico, metadatos, 404, favicon, accesibilidad básica, consola y peso. Úsala antes de publicar cualquier sitio."
 ---
 
-# Auditoría Web
+# AGX Auditoría Web
 
-Se complementa con `revision-pre-lanzamiento`, que cubre pruebas, privacidad,
+Se complementa con `agx-revision-pre-lanzamiento`, que cubre pruebas, privacidad,
 rendimiento y seguridad previas al lanzamiento; con `agx-revision-legal`, que
 cruza el `alt` (señal 17) y el JSON-LD sin reseñas inventadas (señal 8); y con
 `agx-optimizacion-web`, que aplica las mejoras de la señal 20.

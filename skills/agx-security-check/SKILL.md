@@ -5,8 +5,8 @@ description: "Auditoría de seguridad del código completo de una app hecha con 
 
 # AGX Security Check
 
-Se complementa con `revision-pre-lanzamiento`, que revisa la seguridad general
-antes de lanzar, y con `auditoria-web`, que revisa lo visible del sitio. Esta
+Se complementa con `agx-revision-pre-lanzamiento`, que revisa la seguridad general
+antes de lanzar, y con `agx-auditoria-web`, que revisa lo visible del sitio. Esta
 skill baja al código: busca las fallas que una app hecha con IA suele tener y
 que ni los escáneres ni el comando `/security-review` (solo revisa el diff de la
 rama) encuentran. Cruza con `agx-revision-legal` en tres puntos: datos

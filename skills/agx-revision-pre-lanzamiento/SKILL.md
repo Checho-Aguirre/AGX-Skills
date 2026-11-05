@@ -1,11 +1,11 @@
 ---
-name: "revision-pre-lanzamiento"
+name: "agx-revision-pre-lanzamiento"
 description: "Revisión en 5 pasos antes de publicar una app o web hecha con IA: pruebas end-to-end, prueba con agente, privacidad, rendimiento y seguridad. Úsala antes de cada lanzamiento."
 ---
 
-# Revisión Pre lanzamiento
+# AGX Revisión Pre lanzamiento
 
-Se complementa con `auditoria-web`, que revisa SEO técnico, metadatos y
+Se complementa con `agx-auditoria-web`, que revisa SEO técnico, metadatos y
 detalles visibles del sitio; con `agx-revision-legal`, que hace la revisión
 legal completa del paso 3; y con `agx-optimizacion-web`, que aplica las
 mejoras de rendimiento del paso 4.

@@ -5,8 +5,8 @@ description: "Revisa y corrige los riesgos legales de una web o app hecha con IA
 
 # AGX Revisión Legal
 
-Se complementa con `revision-pre-lanzamiento`, que la llama en su paso de
-privacidad; con `auditoria-web`, que revisa lo visible para buscadores; y con
+Se complementa con `agx-revision-pre-lanzamiento`, que la llama en su paso de
+privacidad; con `agx-auditoria-web`, que revisa lo visible para buscadores; y con
 `agx-security-check`, que revisa el código. Esta skill revisa lo que puede
 traer una sanción, un reclamo o una demanda: datos personales, consentimiento,
 textos legales, accesibilidad, publicidad, derechos de autor y normas del
@@ -153,7 +153,7 @@ nada, un enlace `mailto:` o de WhatsApp puede reemplazar el formulario.
   `aria-describedby`) y obligatorios indicados sin depender solo del color.
 - `prefers-reduced-motion` respetado en las animaciones.
 - Objetivos táctiles de al menos 24×24 px.
-- `alt` en las imágenes: es la señal 17 de `auditoria-web`; aquí solo se cruza.
+- `alt` en las imágenes: es la señal 17 de `agx-auditoria-web`; aquí solo se cruza.
 - Corre axe si está disponible (`@axe-core/playwright` o la extensión) en cada
   ruta y en los dos temas. Si no, márcalo **No verificado**.
 
@@ -267,7 +267,7 @@ Un punto **No verificado** no cuenta como cumplido.
 
 - `agx-security-check`: datos personales en logs y errores, CSP de los scripts
   de terceros, y validación y límite de envíos de los formularios.
-- `auditoria-web`: `alt` de las imágenes (señal 17) y JSON-LD sin reseñas ni
+- `agx-auditoria-web`: `alt` de las imágenes (señal 17) y JSON-LD sin reseñas ni
   calificaciones inventadas (señal 8).
 
 ## Aviso
