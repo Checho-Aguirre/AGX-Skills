@@ -7,8 +7,9 @@ description: "Revisión en 5 pasos antes de publicar una app o web hecha con IA:
 
 Se complementa con `agx-auditoria-web`, que revisa SEO técnico, metadatos y
 detalles visibles del sitio; con `agx-revision-legal`, que hace la revisión
-legal completa del paso 3; y con `agx-optimizacion-web`, que aplica las
-mejoras de rendimiento del paso 4.
+legal completa del paso 3; con `agx-optimizacion-web`, que aplica las
+mejoras de rendimiento del paso 4; y con `agx-security-check` y `agx-cifrado`,
+que profundizan el paso 5 y el cierre.
 
 Cinco revisiones en orden, cada una con checklist. Adapta cada paso al tipo de
 proyecto: una web estática no tiene login ni base de datos; una app con cuentas
@@ -132,6 +133,9 @@ instalada, márcalo **No verificado** y avísale al usuario.
   repitiendo la petición. Si se ve algo de B, es crítico: no se lanza.
 - Clasificar hallazgos en crítico, alto, medio y bajo, con archivo, línea,
   riesgo y corrección.
+- Para la revisión completa del código y de los paneles, corre
+  `agx-security-check`; para HTTPS, datos cifrados, llaves y copias de
+  seguridad, `agx-cifrado`.
 
 ## Mínimo para lanzar
 
@@ -160,6 +164,8 @@ Un punto **No verificado** no cuenta como cumplido.
      migraciones de base de datos reversibles).
    - Copias de seguridad (si hay base de datos): respaldo automático de la base
      de datos y una restauración probada al menos una vez.
+   - HTTPS, cifrado de las copias y respaldo de las llaves: según el informe
+     de `agx-cifrado` (pasos 2, 6 y 7).
    - Apps móviles (si aplica): formulario de Seguridad de los datos en Google
      Play, eliminación de cuenta dentro de la app y desde una web, respaldo
      seguro de la llave de firma (keystore) fuera del repo y plan para revertir

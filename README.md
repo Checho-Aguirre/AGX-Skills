@@ -1,10 +1,10 @@
 # AGX Skills · revisión web para Claude Code
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
-[![Versión](https://img.shields.io/badge/versión-3.0.0-green.svg)](#cambios)
+[![Versión](https://img.shields.io/badge/versión-3.1.0-green.svg)](#cambios)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skills-d97757.svg)](https://code.claude.com/docs/en/skills)
 
-Cinco skills que revisan y mejoran tu web o app hecha con IA antes de
+Seis skills que revisan y mejoran tu web o app hecha con IA antes de
 publicarla, para que no se note improvisada, no salga con fallos graves y no te
 traiga problemas legales.
 
@@ -12,18 +12,20 @@ traiga problemas legales.
 |---|---|---|
 | [**AGX Auditoría Web**](skills/agx-auditoria-web/SKILL.md) | `/agx-auditoria-web` | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
 | [**AGX Revisión Pre lanzamiento**](skills/agx-revision-pre-lanzamiento/SKILL.md) | `/agx-revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento (con escalabilidad y caché) y seguridad (con sesiones, límites de peticiones, topes de gasto y monitoreo). Cierra con el despliegue: vuelta atrás, copias de seguridad probadas y apps móviles |
-| [**AGX Security Check**](skills/agx-security-check/SKILL.md) | `/agx-security-check` | Auditoría de seguridad del código completo: 20 fallas comunes (secretos, permisos, IDs adivinables, inyección, XSS, mass assignment, webhooks, subidas), escáneres gratuitos, arreglos de uno en uno y blindaje con `CLAUDE.md`, un hook anti-secretos y revisión automática de cada PR |
+| [**AGX Security Check**](skills/agx-security-check/SKILL.md) | `/agx-security-check` | Auditoría de seguridad del código completo: 20 fallas comunes (secretos, permisos, IDs adivinables, inyección, XSS, mass assignment, webhooks, subidas), escáneres gratuitos, arreglos de uno en uno y blindaje con `CLAUDE.md`, un hook anti-secretos y revisión automática de cada PR. Luego, una segunda ronda que intenta explotar de nuevo lo corregido y revisa la lógica de negocio (planes, precios, saldos, doble envío), y la revisión de los paneles de Supabase, Firebase y storage |
 | [**AGX Revisión Legal**](skills/agx-revision-legal/SKILL.md) | `/agx-revision-legal` | Riesgos legales en 12 pasos: datos personales (Ley 1581), cookies comprobadas en el navegador, consentimiento con prueba guardada, páginas legales, retracto y garantía (Ley 1480), accesibilidad WCAG 2.2 AA, reseñas y cifras dudosas, datos del negocio, derechos de autor y normas del sector. Cierra con un informe de riesgos para el abogado |
 | [**AGX Optimización Web**](skills/agx-optimizacion-web/SKILL.md) | `/agx-optimizacion-web` | Hace más rápida la web sin cambiar diseño, textos ni funciones: 20 puntos de imágenes, fuentes, código y entrega, cada uno con cuándo aplicarlo y cuándo saltarlo, un commit por cambio y Lighthouse en celular antes y después |
+| [**AGX Cifrado**](skills/agx-cifrado/SKILL.md) | `/agx-cifrado` | Datos protegidos en tránsito (HTTPS, HSTS, TLS, SSL a la base de datos), en reposo (cifrado del proveedor, campos sensibles, buckets privados), en el dispositivo (cookies seguras, almacenamiento seguro en el celular) y en las copias de seguridad; llaves fuera del repo, separadas por entorno y con respaldo; y uso correcto de la criptografía (algoritmos, aleatorios seguros, JWT) |
 
 Se complementan: AGX Auditoría Web cuida lo que ven buscadores, redes y visitantes;
 AGX Revisión Pre lanzamiento, que la app funcione y proteja los datos; AGX Security
 Check baja al código para encontrar fallas de seguridad; AGX Revisión Legal
-revisa lo que puede traer una sanción o un reclamo; y AGX Optimización Web
-aplica las mejoras de rendimiento que las demás solo miden. Todas **primero
+revisa lo que puede traer una sanción o un reclamo; AGX Optimización Web
+aplica las mejoras de rendimiento que las demás solo miden; y AGX Cifrado
+revisa que los datos y las llaves estén protegidos donde sea que vivan. Todas **primero
 auditan y reportan**; solo cambian lo que tú apruebes.
 
-> **English summary:** Five Claude Code skills (in Spanish) to review and
+> **English summary:** Six Claude Code skills (in Spanish) to review and
 > improve a website or app built with AI before launch. **AGX Auditoría Web** (`/agx-auditoria-web`)
 > checks 20 signs of an unreviewed AI-built site (technical SEO, metadata, 404,
 > favicon, console errors, page weight). **AGX Revisión Pre lanzamiento**
@@ -33,15 +35,20 @@ auditan y reportan**; solo cambian lo que tú apruebes.
 > tested backups, mobile apps), and never marks as OK what it couldn't verify.
 > **AGX Security Check** (`/agx-security-check`) audits the whole codebase for
 > 20 common security flaws (secrets, authorization, IDOR, injection, XSS,
-> webhooks, uploads), runs free scanners, fixes findings one by one and adds
-> guardrails so they don't come back. **AGX Revisión Legal**
+> webhooks, uploads), runs free scanners, fixes findings one by one, adds
+> guardrails so they don't come back, then runs a second round (re-exploiting
+> fixes and testing business logic) and checks Supabase, Firebase and storage
+> settings. **AGX Revisión Legal**
 > (`/agx-revision-legal`) reviews legal risks under Colombian law by default:
 > personal data, cookies checked in the browser, consent, legal pages, consumer
 > rights, WCAG 2.2 AA accessibility, misleading claims, copyright and
 > sector rules, and ends with a risk report for a lawyer. **AGX Optimización
 > Web** (`/agx-optimizacion-web`) makes the site faster without changing its
 > design, copy or behavior: 20 checks, one commit per change, and mobile
-> Lighthouse before and after. Install with
+> Lighthouse before and after. **AGX Cifrado** (`/agx-cifrado`) checks that
+> data is protected in transit, at rest, on the device and in backups, that keys
+> are stored, separated and backed up properly, and that cryptography is used
+> correctly. Install with
 > `npx skills add Checho-Aguirre/agx-skills`, as a Claude Code plugin, or by
 > copying the folders into `~/.claude/skills/`. MIT licensed.
 
@@ -86,12 +93,12 @@ claude plugin install agx-skills@agx-skills
 
 Instaladas como plugin, las skills llevan el prefijo del plugin:
 `/agx-skills:agx-auditoria-web`, `/agx-skills:agx-revision-pre-lanzamiento`,
-`/agx-skills:agx-security-check`, `/agx-skills:agx-revision-legal` y
-`/agx-skills:agx-optimizacion-web`.
+`/agx-skills:agx-security-check`, `/agx-skills:agx-revision-legal`,
+`/agx-skills:agx-optimizacion-web` y `/agx-skills:agx-cifrado`.
 
 ### 3. Manual
 
-Descarga el repositorio y copia las cinco carpetas de `skills/` en tu carpeta de
+Descarga el repositorio y copia las seis carpetas de `skills/` en tu carpeta de
 skills personales:
 
 - **macOS / Linux:** `~/.claude/skills/`
@@ -105,6 +112,7 @@ Debe quedar así, sin carpetas de más en medio:
 .claude/skills/agx-security-check/SKILL.md
 .claude/skills/agx-revision-legal/SKILL.md
 .claude/skills/agx-optimizacion-web/SKILL.md
+.claude/skills/agx-cifrado/SKILL.md
 ```
 
 En macOS o Linux puedes hacerlo de una vez:
@@ -142,9 +150,13 @@ En cualquier sesión de Claude Code, dentro de tu proyecto:
 /agx-optimizacion-web
 ```
 
+```
+/agx-cifrado
+```
+
 Claude también las activa solo cuando pides algo como *"revisa la web antes de
 publicarla"*, *"audita la seguridad de este proyecto"*, *"revisa los riesgos
-legales"* o *"haz más rápida la web"*. Si tu proyecto tiene `CLAUDE.md` o `DESIGN.md`, sus reglas mandan
+legales"*, *"haz más rápida la web"* o *"revisa que los datos estén cifrados"*. Si tu proyecto tiene `CLAUDE.md` o `DESIGN.md`, sus reglas mandan
 sobre las de la skill.
 
 ### Qué entregan
@@ -192,6 +204,37 @@ lanzamiento:
 | 11. RNBD | No verificado | Falta saber los activos del responsable | Confirmar con el contador | Sí |
 
 ## Cambios
+
+### 3.1.0
+
+Nueva skill **AGX Cifrado** (`/agx-cifrado`): revisa que los datos estén
+protegidos en tránsito, en reposo, en el dispositivo y en las copias de
+seguridad, que las llaves estén bien guardadas y con respaldo, y que la
+criptografía se use bien. Nunca inventa criptografía propia ni muestra llaves,
+y pide copia de seguridad y aprobación antes de cifrar datos existentes o rotar
+una llave.
+
+**AGX Security Check** suma:
+
+- Una regla nueva: antes de cambiar nada, confirmar que el estado actual está
+  guardado y que se puede volver atrás.
+- **Paso 7, segunda ronda:** vuelve a auditar sin dar por buenos los arreglos y
+  revisa la lógica de negocio: planes, créditos, saldos y roles; precios,
+  descuentos y totales; datos de otras cuentas; acciones validadas solo en la
+  interfaz; y doble envío, carreras y pasos saltados.
+- **Paso 8, paneles de los servicios:** RLS y Security Advisor de Supabase
+  (con las políticas que falten), reglas de Firestore y Storage de Firebase, y
+  qué buckets y claves de API son públicos.
+- Cruces con las demás skills y un aviso de que no reemplaza una auditoría
+  profesional.
+
+**AGX Revisión Pre lanzamiento** remite a AGX Cifrado en su paso 5 y en el
+cierre.
+
+Para tenerlas: con el CLI `skills`, vuelve a correr
+`npx skills add Checho-Aguirre/agx-skills`; como plugin,
+`/plugin marketplace update agx-skills`; a mano, copia también la carpeta
+`agx-cifrado`.
 
 ### 3.0.0
 

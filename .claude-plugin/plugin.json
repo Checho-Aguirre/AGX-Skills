@@ -1,8 +1,8 @@
 {
   "name": "agx-skills",
   "displayName": "AGX Skills",
-  "version": "3.0.0",
-  "description": "AGX Auditoría Web (20 señales de un sitio hecho con IA sin revisión), AGX Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos), AGX Security Check (auditoría de seguridad del código con 20 fallas comunes), AGX Revisión Legal (datos personales, consentimiento, textos legales, accesibilidad y veracidad en 12 pasos) y AGX Optimización Web (20 mejoras de rendimiento sin cambiar el diseño).",
+  "version": "3.1.0",
+  "description": "AGX Auditoría Web (20 señales de un sitio hecho con IA sin revisión), AGX Revisión Pre lanzamiento (pruebas, privacidad, rendimiento y seguridad en 5 pasos), AGX Security Check (auditoría de seguridad del código y de los paneles con 20 fallas comunes, segunda ronda y lógica de negocio), AGX Revisión Legal (datos personales, consentimiento, textos legales, accesibilidad y veracidad en 12 pasos), AGX Optimización Web (20 mejoras de rendimiento sin cambiar el diseño) y AGX Cifrado (datos protegidos en tránsito, en reposo, en el dispositivo y en las copias, y llaves bien manejadas).",
   "author": {
     "name": "Sergio Granados Aguirre (AGX Tech And Code)",
     "url": "https://github.com/Checho-Aguirre"
@@ -10,5 +10,5 @@
   "homepage": "https://github.com/Checho-Aguirre/agx-skills",
   "repository": "https://github.com/Checho-Aguirre/agx-skills",
   "license": "MIT",
-  "keywords": ["web", "seo", "auditoria", "lanzamiento", "privacidad", "seguridad", "legal", "accesibilidad", "rendimiento", "spanish"]
+  "keywords": ["web", "seo", "auditoria", "lanzamiento", "privacidad", "seguridad", "legal", "accesibilidad", "rendimiento", "cifrado", "spanish"]
 }
