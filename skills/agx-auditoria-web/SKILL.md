@@ -8,7 +8,10 @@ description: "Audita una web o landing para que no se note hecha con IA: SEO té
 Se complementa con `agx-revision-pre-lanzamiento`, que cubre pruebas, privacidad,
 rendimiento y seguridad previas al lanzamiento; con `agx-revision-legal`, que
 cruza el `alt` (señal 17) y el JSON-LD sin reseñas inventadas (señal 8); y con
-`agx-optimizacion-web`, que aplica las mejoras de la señal 20.
+`agx-optimizacion-web`, que aplica las mejoras de la señal 20. Para SEO de
+contenido, SEO local o GEO a fondo, usa el plugin
+[claude-seo](https://github.com/AgriciDaniel/claude-seo) (`/seo technical`,
+`/seo geo`, `/seo local`, `/seo audit`).
 
 Revisa una web pública y detecta los detalles que delatan que se armó con IA sin
 revisión: cosas que no rompen el sitio pero lo hacen ver poco profesional e
