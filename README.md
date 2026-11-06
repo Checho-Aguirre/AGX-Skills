@@ -1,7 +1,7 @@
 # AGX Skills · revisión web para Claude Code
 
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
-[![Versión](https://img.shields.io/badge/versión-3.1.0-green.svg)](#cambios)
+[![Versión](https://img.shields.io/badge/versión-3.2.0-green.svg)](#cambios)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skills-d97757.svg)](https://code.claude.com/docs/en/skills)
 
 Seis skills que revisan y mejoran tu web o app hecha con IA antes de
@@ -13,7 +13,7 @@ traiga problemas legales.
 | [**AGX Auditoría Web**](skills/agx-auditoria-web/SKILL.md) | `/agx-auditoria-web` | 20 señales que delatan un sitio hecho con IA sin revisión: dominio, HTML vacío, 404, títulos, Open Graph, JSON-LD, h1, canonical, robots, sitemap, favicon, alt, consola y peso |
 | [**AGX Revisión Pre lanzamiento**](skills/agx-revision-pre-lanzamiento/SKILL.md) | `/agx-revision-pre-lanzamiento` | 5 revisiones previas al lanzamiento: pruebas de principio a fin, prueba con agente, privacidad, rendimiento (con escalabilidad y caché) y seguridad (con sesiones, límites de peticiones, topes de gasto y monitoreo). Cierra con el despliegue: vuelta atrás, copias de seguridad probadas y apps móviles |
 | [**AGX Security Check**](skills/agx-security-check/SKILL.md) | `/agx-security-check` | Auditoría de seguridad del código completo: 20 fallas comunes (secretos, permisos, IDs adivinables, inyección, XSS, mass assignment, webhooks, subidas), escáneres gratuitos, arreglos de uno en uno y blindaje con `CLAUDE.md`, un hook anti-secretos y revisión automática de cada PR. Luego, una segunda ronda que intenta explotar de nuevo lo corregido y revisa la lógica de negocio (planes, precios, saldos, doble envío), y la revisión de los paneles de Supabase, Firebase y storage |
-| [**AGX Revisión Legal**](skills/agx-revision-legal/SKILL.md) | `/agx-revision-legal` | Riesgos legales en 12 pasos: datos personales (Ley 1581), cookies comprobadas en el navegador, consentimiento con prueba guardada, páginas legales, retracto y garantía (Ley 1480), accesibilidad WCAG 2.2 AA, reseñas y cifras dudosas, datos del negocio, derechos de autor y normas del sector. Cierra con un informe de riesgos para el abogado |
+| [**AGX Revisión Legal**](skills/agx-revision-legal/SKILL.md) | `/agx-revision-legal` | Riesgos legales en 13 pasos: datos personales (Ley 1581), cookies comprobadas en el navegador, consentimiento con prueba guardada, páginas legales, retracto y garantía (Ley 1480), accesibilidad WCAG 2.2 AA, reseñas y cifras dudosas, datos del negocio, derechos de autor, normas del sector y, por defecto, las leyes de la UE (RGPD, ePrivacy, accesibilidad) y de EE. UU. (COPPA, CCPA/CPRA, ADA, CAN-SPAM, FTC), con edad mínima de 16 años en apps con login. Cierra con un informe de riesgos para el abogado |
 | [**AGX Optimización Web**](skills/agx-optimizacion-web/SKILL.md) | `/agx-optimizacion-web` | Hace más rápida la web sin cambiar diseño, textos ni funciones: 20 puntos de imágenes, fuentes, código y entrega, cada uno con cuándo aplicarlo y cuándo saltarlo, un commit por cambio y Lighthouse en celular antes y después |
 | [**AGX Cifrado**](skills/agx-cifrado/SKILL.md) | `/agx-cifrado` | Datos protegidos en tránsito (HTTPS, HSTS, TLS, SSL a la base de datos), en reposo (cifrado del proveedor, campos sensibles, buckets privados), en el dispositivo (cookies seguras, almacenamiento seguro en el celular) y en las copias de seguridad; llaves fuera del repo, separadas por entorno y con respaldo; y uso correcto de la criptografía (algoritmos, aleatorios seguros, JWT) |
 
@@ -39,10 +39,12 @@ auditan y reportan**; solo cambian lo que tú apruebes.
 > guardrails so they don't come back, then runs a second round (re-exploiting
 > fixes and testing business logic) and checks Supabase, Firebase and storage
 > settings. **AGX Revisión Legal**
-> (`/agx-revision-legal`) reviews legal risks under Colombian law by default:
-> personal data, cookies checked in the browser, consent, legal pages, consumer
-> rights, WCAG 2.2 AA accessibility, misleading claims, copyright and
-> sector rules, and ends with a risk report for a lawyer. **AGX Optimización
+> (`/agx-revision-legal`) reviews legal risks under Colombian law by default,
+> plus EU (GDPR, ePrivacy, European Accessibility Act) and US rules (COPPA,
+> CCPA/CPRA, ADA, CAN-SPAM, FTC): personal data, cookies checked in the browser,
+> consent, legal pages, consumer rights, WCAG 2.2 AA accessibility, misleading
+> claims, copyright, sector rules and a 16+ age gate for apps with accounts,
+> and ends with a risk report for a lawyer. **AGX Optimización
 > Web** (`/agx-optimizacion-web`) makes the site faster without changing its
 > design, copy or behavior: 20 checks, one commit per change, and mobile
 > Lighthouse before and after. **AGX Cifrado** (`/agx-cifrado`) checks that
@@ -204,6 +206,39 @@ lanzamiento:
 | 11. RNBD | No verificado | Falta saber los activos del responsable | Confirmar con el contador | Sí |
 
 ## Cambios
+
+### 3.2.0
+
+**AGX Revisión Legal** revisa ahora, por defecto, también las leyes de la UE y
+de EE. UU., porque una web pública se puede usar desde allá (salvo que digas
+expresamente que no):
+
+- **Paso 12 nuevo, "Leyes de la UE y de EE. UU.":** RGPD (base legal,
+  derechos, transferencias, edad de consentimiento digital y representante en
+  la UE), cookies con consentimiento previo (ePrivacy), Ley Europea de
+  Accesibilidad, COPPA, leyes estatales como la de California (CCPA/CPRA) con
+  sus umbrales, demandas por accesibilidad (ADA), CAN-SPAM y las reglas de la
+  FTC sobre reseñas y testimonios.
+- **Edad mínima de 16 años** en webs y apps con login: declaración de edad al
+  registrarse y qué pasa con las cuentas de menores. Si el producto es para
+  menores, se marca para el abogado.
+- **Analítica:** preferir una sin cookies (Cloudflare Web Analytics,
+  Plausible, Umami), que no necesita banner; Google Analytics u otra con
+  cookies, solo con banner previo y modo de consentimiento.
+- Verifica cada norma en EUR-Lex, la FTC y la oficina del fiscal de
+  California, y marca **No verificado** lo que no pudo consultar. El informe
+  pasa a ser el paso 13 y la tabla "Mínimo para lanzar" suma dos filas.
+
+**AGX Auditoría Web** amplía "Después de publicar": Search Console con
+propiedad de tipo Dominio verificada por DNS (sin borrar el registro TXT),
+sitemap e Inspección de URLs, Bing Webmaster Tools, prueba en un celular real
+con datos móviles y revisión semanal de la analítica.
+
+**AGX Revisión Pre lanzamiento** lo menciona en su paso de privacidad.
+
+Para tenerlas: con el CLI `skills`, vuelve a correr
+`npx skills add Checho-Aguirre/agx-skills`; como plugin,
+`/plugin marketplace update agx-skills`.
 
 ### 3.1.0
 

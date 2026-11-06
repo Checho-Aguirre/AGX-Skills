@@ -70,8 +70,10 @@ resumen, revisa: inventario de datos personales y de cookies comprobadas en el
 navegador, páginas legales, consentimiento previo y autorización con prueba
 guardada, minimización de formularios, terceros embebidos, accesibilidad,
 veracidad de reseñas y cifras, datos del negocio, derechos de autor y normas
-del sector, con la ley del país del responsable. Si esa skill no está
-instalada, márcalo **No verificado** y avísale al usuario.
+del sector, con la ley del país del responsable. Revisa también, por defecto,
+las leyes de la UE y de EE. UU. y la edad mínima de 16 años en las apps con
+login. Si esa skill no está instalada, márcalo **No verificado** y avísale al
+usuario.
 
 ## 4. Rendimiento
 

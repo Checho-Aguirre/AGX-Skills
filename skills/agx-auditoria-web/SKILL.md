@@ -108,7 +108,18 @@ cada señal corregida.
 
 ## Después de publicar (recordarle al usuario)
 
-- Registrar el sitio en Google Search Console y enviar el sitemap.
+- **Google Search Console** con una propiedad de tipo **Dominio**, verificada
+  con un registro TXT en el DNS. No borrar ese registro después: si se borra,
+  Google deja de reconocer al dueño. Enviar `sitemap.xml` y revisar con
+  Inspección de URLs que las páginas principales estén indexadas.
+- **Bing Webmaster Tools:** registrar el sitio también (puede importar la
+  configuración de Search Console) y enviar el sitemap.
+- **Probar desde un celular real con datos móviles,** no solo con wifi ni solo
+  con Lighthouse: cargar el inicio y los flujos principales y ver que todo se
+  lea y funcione.
+- **Revisar la analítica cada semana:** usuarios, de dónde llegan y qué
+  páginas ven, para detectar páginas que nadie visita o fuentes que no
+  funcionan.
 - Probar la vista previa de enlaces en el depurador de Facebook y el Post
   Inspector de LinkedIn.
 - Validar el JSON-LD con la prueba de resultados enriquecidos de Google.
